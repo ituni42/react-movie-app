@@ -2,6 +2,10 @@
 
 A modern, responsive movie web application built with React, Redux Toolkit, React Router, and Tailwind CSS. This project fetches data from The Movie Database (TMDb) API and provides a beautiful, interactive UI for exploring trending movies, TV shows, and detailed information about each title.
 
+## 🚀 Live Demo
+
+Check out the deployed app here: [react-movie-app-tau-smoky.vercel.app](https://react-movie-app-tau-smoky.vercel.app/)
+
 ## Features
 - Browse trending movies and TV shows
 - Explore detailed information for each title
