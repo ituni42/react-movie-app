@@ -1,13 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import useFetchDetails from '../hooks/useFetchDetails'
+import useFetchDetails from '../hooks/useFetchDetails.jsx'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
-import Divider from '../components/Divider'
-import useFetch from '../hooks/useFetch'
-import HorizontalScrollCard from '../components/HorizontalScrollCard'
+import Divider from '../components/Divider.jsx'
+import useFetch from '../hooks/useFetch.jsx'
+import HorizontalScrollCard from '../components/HorizontalScrollCard.jsx'
 import { useState } from 'react'
-import VideoPlay from '../components/VideoPlay'
+import VideoPlay from '../components/VideoPlay.jsx'
 
 
 const DetailsPage = () => {
@@ -20,10 +20,6 @@ const DetailsPage = () => {
   const [playVideo,setPlayVideo] = useState(false)
   const [playVideoId,setPlayVideoId] = useState("")
 
-  //console.log("params",params)
-  console.log("data",data)
-  console.log("star cast", castData)
-  
   const handlePlayVideo = (data) =>{
     setPlayVideoId(data)
     setPlayVideo(true)
@@ -31,7 +27,6 @@ const DetailsPage = () => {
   const duration = (data?.runtime/60).toFixed(1)?.split(".")
   const durationMinutes = parseFloat(`0.${duration[1]}`)*60
   
-  const writer = castData?.crew?.filter(el => el?.known_for_department === "Writing")?.map(el => el?.name)?.join(", ")
 
   return (
     <div>
@@ -40,6 +35,7 @@ const DetailsPage = () => {
               <img
                 src={imageURL+data?.backdrop_path}
                 className='h-full w-full object-cover'
+                alt="Backdrop"
               />
             </div>
             <div className='absolute w-full h-full top-0 bg-gradient-to-t from-neutral-900 to-transparent'>
@@ -51,6 +47,7 @@ const DetailsPage = () => {
               <img
                   src={imageURL+data?.poster_path}
                   className='h-80 w-60 object-cover rounded'
+                  alt="Poster"
                 />
               <button onClick={()=>handlePlayVideo(data)} className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>Play now</button>
             </div>
@@ -118,6 +115,7 @@ const DetailsPage = () => {
                               <img
                                 src={imageURL+starCast?.profile_path}
                                 className='w-24 h-24 object-cover rounded-full'
+                                alt="Cast"
                               />
                             </div>
                             <p className='font-bold text-center text-sm text-neutral-400'>{starCast?.name}</p>

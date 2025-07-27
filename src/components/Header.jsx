@@ -2,7 +2,7 @@ import React, {useEffect,useState} from 'react'
 import logo from '../assets/TextLogo.png'
 import {Link, NavLink, useLocation, useNavigate} from 'react-router-dom'
 import { IoSearch } from "react-icons/io5";
-import { navigation } from '../constants/navigation';
+import { navigation } from '../constants/navigation.jsx';
 
 const Header = () => {
     const location = useLocation()
@@ -14,12 +14,12 @@ const Header = () => {
     console.log("location",)
     
 
-    useEffect(()=>{
+    useEffect(() => {
         if(searchInput){
             navigate(`/search?q=${searchInput}`)
         }
         
-    },[searchInput])
+    }, [navigate, searchInput]);
     const handleSubmit = (e)=>{
         e.preventDefault()
     }

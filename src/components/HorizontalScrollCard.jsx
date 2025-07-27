@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './Card'
+import Card from './Card.jsx'
 import { FaAngleRight,FaAngleLeft } from "react-icons/fa6";
 import { useRef } from 'react';
 

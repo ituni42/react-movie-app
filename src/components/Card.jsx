@@ -14,6 +14,7 @@ const Card = ({data,trending,index,media_type}) => {
           data?.poster_path ? (
                 <img 
                 src={imageURL+data?.poster_path}
+                alt="Card"
             />
           ) :(
                 <div className='bg-neutral-800 h-full w-full flex justify-center'>

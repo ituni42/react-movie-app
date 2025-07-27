@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { FaAngleRight,FaAngleLeft } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
@@ -9,28 +9,28 @@ const BannerHome = () => {
     const [currentImage,setCurrentImage] = useState(0)
     //console.log("banner Home",bannerData)
 
-    const handleNext = ()=>{
-        if(currentImage < bannerData.length-1){
-            setCurrentImage(preve => preve+1)
-        }
-    }
-    const handlePrevious = ()=>{
-        if(currentImage > 0){
-            setCurrentImage(preve => preve-1)
+    const handleNext = () => {
+        if (currentImage < bannerData.length - 1) {
+            setCurrentImage(preve => preve + 1)
+        } else {
+            setCurrentImage(0)
         }
     }
 
-    useEffect(()=>{
-        const interval = setInterval(()=>{
-            if(currentImage < bannerData.length -1){
-                handleNext()
-            }else{
-                setCurrentImage(0)
-            }
-        },5000)
-        
-        return ()=>clearInterval(interval)
-    },[bannerData,imageURL,currentImage])
+    const handlePrevious = () => {
+        if (currentImage > 0) {
+            setCurrentImage(preve => preve - 1)
+        } else {
+            setCurrentImage(bannerData.length - 1)
+        }
+    }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleNext();
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [bannerData, imageURL, currentImage]);
 
   return (
     <section className='w-full h-full'>
@@ -44,6 +44,7 @@ const BannerHome = () => {
                                     <img
                                         src={imageURL+data.backdrop_path}
                                         className="h-full w-full object-cover"
+                                        alt="Banner"
                                     />
                                 </div>
 

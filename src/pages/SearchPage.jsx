@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
-import Card from '../components/Card'
+import Card from '../components/Card.jsx'
 
 
 const SearchPage = () => {
@@ -12,34 +11,28 @@ const SearchPage = () => {
   const navigate = useNavigate()
   const query = location?.search?.slice(3)
 
-  const fetchData = async()=>{
-    try{
-        const response = await axios.get(`/search/multi`,{
-          params: {
-            query: location?.search?.slice(3),
-            page: page
-          }
-        })
-        setData((preve)=>{
-          return[
-            ...preve,
-            ...response.data.results
-          ]
-        })
-       // console.log("response",response.data.results)
-    } catch (error){
-        console.log('error',error)
+  useEffect(() => {
+    const fetchData = async () => {
+      try{
+          const response = await axios.get(`/search/multi`,{
+            params: {
+              query: location?.search?.slice(3),
+              page: page
+            }
+          })
+          setData((preve)=>{
+            return[
+              ...preve,
+              ...response.data.results
+            ]
+          })
+         // console.log("response",response.data.results)
+      } catch (error){
+          console.log('error',error)
+      }
     }
-  }
-
-useEffect(()=>{
-  if(query){
-    setPage(1)
-    setData([])
     fetchData()
-  }
-  
-},[location.search])
+  }, [query])
 
 const handleScroll = ()=>{
   if((window.innerHeight + document.documentElement.scrollTop + 1)>=document.documentElement.scrollHeight){
@@ -49,7 +42,7 @@ const handleScroll = ()=>{
 
 useEffect(()=>{
     if(query){
-    fetchData()
+    // fetchData() // This line is removed as fetchData is now inside useEffect
     }
   },[page])
 
